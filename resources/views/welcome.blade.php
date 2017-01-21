@@ -75,7 +75,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Laravel para inutiles
                 </div>
 
                 <div class="links">
