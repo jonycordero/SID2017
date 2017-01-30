@@ -15,7 +15,11 @@ class CreatePersonaNaturalsTable extends Migration
     {
         Schema::create('persona_naturals', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('direcion',50);
             $table->timestamps();
+            
+            //$table->integer('personas_id')->unsigned();
+            //$table->foreign('personas_id')->references('id')->on('personas');
         });
     }
 

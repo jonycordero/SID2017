@@ -15,7 +15,18 @@ class CreateDetalleRegistrosTable extends Migration
     {
         Schema::create('detalle_registros', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('cantidad_buena');
+            $table->integer('cantidad_mala');
+            $table->decimal('precio_compra',4,2);
+            $table->decimal('precia_venta',4,2);
+            $table->date('fecha_caducidad');
             $table->timestamps();
+            
+            $table->integer('productos_id')->unsigned();
+            $table->foreign('productos_id')->references('id')->on('productos');
+            
+            $table->integer('registros_id')->unsigned();
+            $table->foreign('registros_id')->references('id')->on('registros');
         });
     }
 

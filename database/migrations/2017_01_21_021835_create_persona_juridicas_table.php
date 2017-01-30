@@ -15,7 +15,16 @@ class CreatePersonaJuridicasTable extends Migration
     {
         Schema::create('persona_juridicas', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('ruc',11);
+            $table->string('razon_social',50);
+            $table->string('direccion',50);
+            $table->string('email',50);
+            $table->enum('tipo', ['cliente','proveedor']);
             $table->timestamps();
+            
+            $table->integer('personas_id')->unsigned();
+            $table->foreign('personas_id')->references('id')->on('personas');
+            
         });
     }
 

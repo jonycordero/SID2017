@@ -15,7 +15,15 @@ class CreateDetalleVentasTable extends Migration
     {
         Schema::create('detalle_ventas', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('cantidad');
+            $table->decimal('precio_venta',4,2);
             $table->timestamps();
+            
+            $table->integer('ventas_id')->unsigned();
+            $table->foreign('ventas_id')->references('id')->on('ventas');
+            
+            $table->integer('productos_id')->unsigned();
+            $table->foreign('productos_id')->references('id')->on('productos');
         });
     }
 

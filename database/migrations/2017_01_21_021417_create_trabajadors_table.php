@@ -15,6 +15,8 @@ class CreateTrabajadorsTable extends Migration
     {
         Schema::create('trabajadors', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('codigo',10);
+            $table->string('cargo',15);
             $table->timestamps();
         });
     }
