@@ -23,3 +23,4 @@ Route::get('/login', function () {
 	});
 
 Route::resource('categoria', 'CategoriaController');
+//hola
