@@ -43,7 +43,7 @@ class CreateForaneasTable extends Migration
         $table->integer('personas_id')->unsigned();
         $table->foreign('personas_id')->references('id')->on('personas');
         });
-        
+        //lo que no se pudo suvbbir
         
     }
 
