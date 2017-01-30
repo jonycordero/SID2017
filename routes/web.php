@@ -23,3 +23,5 @@ Route::get('/login', function (){
 });
 
 Route::get('persona','PersonaController');
+
+Route::get('persona','PersonaController');
