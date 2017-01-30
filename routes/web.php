@@ -18,4 +18,9 @@ Route::get('/admin',function(){
 	return view('indexAdmin');
 });
 
+Route::get('/login', function (){
+    return view('login');  
+});
+
+
 Route::resource('categoria','CategoriaController');
