@@ -21,6 +21,5 @@ Route::get('/admin',function(){
 Route::get('/login', function (){
     return view('login');  
 });
-//kdjhksjdbvkjsbdv
 
 Route::resource('categoria','CategoriaController');
