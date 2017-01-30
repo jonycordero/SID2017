@@ -15,7 +15,12 @@ class CreateRegistrosTable extends Migration
     {
         Schema::create('registros', function (Blueprint $table) {
             $table->increments('id');
+            $table->datetime('fecha');
+            $table->integer('numero_remision');
             $table->timestamps();
+            
+            $table->integer('provedores_id')->unsigned();
+            $table->foreign('provedores_id')->references('id')->on('persona_juridicas');
         });
     }
 

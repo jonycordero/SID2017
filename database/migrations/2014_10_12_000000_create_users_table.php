@@ -20,6 +20,9 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            
+            //$table->integer('personas_id')->unsigned();
+            //$table->foreign('personas_id')->references('id')->on('personas');
         });
     }
 
@@ -30,6 +33,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('users');
+                Schema::drop('users');
     }
 }
