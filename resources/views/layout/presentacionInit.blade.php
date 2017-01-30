@@ -53,8 +53,9 @@
 		<div class="top-header-main">
 			<div class="col-md-4 top-header-left">
 				<div class="search-bar">
-					<input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
-					<input type="submit" value="">
+                                    <div class="b-btn"> 
+                                        <a href="../login">Iniciar sesion</a>
+							</div>
 				</div>
 			</div>
 			<div class="col-md-4 top-header-middle">
