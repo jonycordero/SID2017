@@ -14,6 +14,13 @@ class CreateForaneasTable extends Migration
     public function up()
     {
         //
+        Schema::table('persona_juridicas', function (Blueprint $table) {
+            
+            $table->integer('personas_id')->unsigned();
+            $table->foreign('personas_id')->references('id')->on('personas');
+            
+        });
+
         Schema::table('users', function (Blueprint $table) {
         $table->integer('personas_id')->unsigned();
             $table->foreign('personas_id')->references('id')->on('personas');

@@ -12,11 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('indexPresentacion');
 });
 Route::get('/admin',function(){
 	return view('indexAdmin');
-});
-Route::get('/pre',function(){
-	return view('indexPresentacion');
 });

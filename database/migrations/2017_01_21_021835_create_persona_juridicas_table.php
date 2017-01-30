@@ -22,8 +22,7 @@ class CreatePersonaJuridicasTable extends Migration
             $table->enum('tipo', ['cliente','proveedor']);
             $table->timestamps();
             
-            $table->integer('personas_id')->unsigned();
-            $table->foreign('personas_id')->references('id')->on('personas');
+           
             
         });
     }
