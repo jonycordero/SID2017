@@ -7,7 +7,7 @@
  	<div class="col-md-4">
  		<div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">Crear Nuevo cliente</h3>
+    <h3 class="panel-title">Crear Nueva categoria</h3>
   </div>
   <div class="panel-body">
 
@@ -24,39 +24,10 @@
 
     <div class="form-group ">
             {!!Form::label('Descripcion de la categoria', null, ['class' => 'control-label'])!!}
-            {!! Form::textarea('notes', '3 < 4') !!}
+            {!! Form::textarea('descripcion',null,['class'=>'form-control','placeholder'=>'Limite maximo 300 caracteres']) !!}
     </div>
-    <div class="form-group ">
-            {!!Form::label('Apellido_paterno', null, ['class' => 'control-label'])!!}
-            {!!Form::text('ape_p',null,['class'=>'form-control','placeholder'=>'Apellido paterno'])!!}
-    </div>
-	<div class="form-group ">
-            {!!Form::label('Apellido_materno', null, ['class' => 'control-label'])!!}
-            {!!Form::text('ape_m',null,['class'=>'form-control','placeholder'=>'Apellido materno'])!!}
-    </div>
-
-    <div class="form-group ">
-            {!!Form::label('Numero de telefono', null, ['class' => 'control-label'])!!}
-            {!!Form::text('num_tele',null,['class'=>'form-control','placeholder'=>'numero de telefono'])!!}
-    </div>
-    <div class="form-group ">
-            {!!Form::label('Correo Electronico', null, ['class' => 'control-label'])!!}
-            {!!Form::text('email',null,['class'=>'form-control','placeholder'=>'Correo Electronico'])!!}
-    </div>
-
-   
-
-   
-
- 	
-
-  
-     
-     
 
      {!! Form::submit('Guardar',['class'=>'btn btn-primary']); !!}
-    <hr />
-    <!-- {!!Form::date('name', \Carbon\Carbon::now());!!} -->
    
   {!! Form::close() !!}
   </div>
@@ -66,16 +37,16 @@
  	<div class="col-md-8">
  		<div class="panel panel-default">
   			<div class="panel-heading">
-    			<h3 class="panel-title">Lista de Clientes</h3>
+    			<h3 class="panel-title">Lista de categorias</h3>
   			</div>
 	  		<div class="panel-body">
 	  		<div class="table-responsive">
 	  			<table class="table table-hover ">
 				    <thead>
 				      <tr>
-				        <th>Nombre</th>
-				        <th>Email</th>
-				        <th>Fecha de registro</th>
+				        <th>Nombre de la categoria</th>
+				        <th>Descripcion</th>
+				        
 				        <th style="width: 100px;">Accion</th>
 				      </tr>
 				    </thead>

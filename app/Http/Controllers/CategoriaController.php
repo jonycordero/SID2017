@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Categoria;
+
 
 class CategoriaController extends Controller
 {
@@ -34,13 +36,14 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        return 'Guardado '.$request->nombre;
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $idnombre
      * @return \Illuminate\Http\Response
      */
     public function show($id)
