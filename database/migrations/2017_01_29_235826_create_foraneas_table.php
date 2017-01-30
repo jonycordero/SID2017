@@ -39,6 +39,11 @@ class CreateForaneasTable extends Migration
         $table->foreign('pagos_id')->references('id')->on('pagos');
         });
         
+        Schema::table('trabajadors', function (Blueprint $table) {
+        $table->integer('personas_id')->unsigned();
+        $table->foreign('personas_id')->references('id')->on('personas');
+        });
+        
         
     }
 
