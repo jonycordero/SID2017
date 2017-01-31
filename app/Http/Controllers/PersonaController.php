@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Session;
+use Redirect;
+use App\Persona;
 class PersonaController extends Controller
 {
     /**
@@ -14,7 +16,9 @@ class PersonaController extends Controller
     public function index()
     {
         //
-        return view('');
+        $personas = Persona::paginate(5);
+        
+        return view('admin.persona.create', compact('personas'));
     }
 
     /**
@@ -36,6 +40,14 @@ class PersonaController extends Controller
     public function store(Request $request)
     {
         //
+        Persona::create([
+            'dni' => $request['dni'],
+            'nombre' => $request['nombre'],
+            'apellido_paterno' => $request['apellido_paterno'],
+            'apellido_materno' => $request['apellido_materno'],
+        ]);
+        Session::flash('message-susses','Persona Guardado Correctamente');
+        return Redirect::to('/persona');
     }
 
     /**
@@ -81,5 +93,8 @@ class PersonaController extends Controller
     public function destroy($id)
     {
         //
+        Persona::destroy($id);
+        Session::flash('message-susses','Persona eliminada eliminado Correctamente');
+        return Redirect::to('/persona');
     }
 }
