@@ -31,3 +31,6 @@ Route::resource('persona','PersonaController');
 Route::resource('usuario','UsuarioController');
 	Route::get('usuario/delete/{id}','UsuarioController@destroy');
 
+Route::resource('especificacion','EspecificacionController');
+	Route::get('especificacion/delete/{id}','EspecificacionController@destroy');
+

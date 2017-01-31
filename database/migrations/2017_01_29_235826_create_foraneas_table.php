@@ -28,7 +28,7 @@ class CreateForaneasTable extends Migration
         
         Schema::table('productos', function (Blueprint $table) {
         $table->integer('especificacion_id')->unsigned();
-        $table->foreign('especificacion_id')->references('id')->on('especificaciones');
+        $table->foreign('especificacion_id')->references('id')->on('especificacions');
         });
         
         Schema::table('persona_naturals', function (Blueprint $table) {

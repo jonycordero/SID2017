@@ -14,9 +14,8 @@ class CreateEspecificacionTable extends Migration
     public function up()
     {
         //
-        Schema::create('especificaciones', function (Blueprint $table) {
+        Schema::create('especificacions', function (Blueprint $table) {
             $table->increments('id');
-            
             $table->string('descripcion',300);
             $table->timestamps();
         });
