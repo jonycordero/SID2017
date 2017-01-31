@@ -15,8 +15,11 @@ class CategoriaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('admin.categoria.admCategoria');
+    {   
+        $categorias = Categoria::All();
+        
+   
+        return view('admin.categoria.admCategoria',compact('categorias'));
     }
 
     /**
@@ -87,6 +90,8 @@ class CategoriaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Categoria::destroy($id);
+        Session::flash('message-susses','Categoria eliminado correctamente');
+        return redirect('/categoria');
     }
 }

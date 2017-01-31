@@ -50,6 +50,7 @@
 				      <tr>
 				        <th>Nombre de la categoria</th>
 				        <th>Descripcion</th>
+                <th>Fecha</th>
 				        
 				        <th style="width: 100px;">Accion</th>
 				      </tr>
@@ -57,16 +58,17 @@
 				    <tbody>
 
 
-				   {{--  @foreach($clientes as $cliente)
+				     @foreach($categorias as $categoria)
               <tr>
-                <td>{{ $cliente->ape_p }} {{ $cliente->ape_m }}, {{ $cliente->nombre }}</td>
-                <td>{{ $cliente->email }}</td>
-                <td>{{ $cliente->created_at }}</td>
+                <td>{{ $categoria->nombre }}</td>
+                <td>{{ $categoria->descripcion }}</td>
+                <td>{{ $categoria->created_at }}</td>
                 <td>
-            {!! Form::open(['route' =>['usuario.destroy',$cliente->id], 'method'=>'DELETE']) !!}{!! Form::submit('Eliminar',['class'=>'btn btn-danger square-btn-adjust']); !!}{!! Form::close() !!}
+                  <a class="btn btn-danger btn-xs" href="{!! URL::to('categoria/delete') !!}/{{ $categoria->id }}" >Eliminar</a>
                 </td>
+            
               </tr>
-            @endforeach --}}
+            @endforeach
 				     
 				    </tbody>
 				</table>
