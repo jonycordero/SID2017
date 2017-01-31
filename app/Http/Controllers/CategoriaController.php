@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Categoria;
+use Session;
 
 
 class CategoriaController extends Controller
@@ -36,8 +37,12 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        
-        return 'Guardado '.$request->nombre;
+        Categoria::create([
+            'nombre' => $request['nombre'],
+            'descripcion' => $request['descripcion'],
+            ]);
+        Session::flash('message-susses','Categoria creada correctamente');
+        return redirect('/categoria');
     }
 
     /**

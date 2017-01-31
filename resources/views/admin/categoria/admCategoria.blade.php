@@ -1,8 +1,16 @@
 @extends('layout.admin')
 @section('title', 'Categoria')
 
+
+
+
+
+
 @section('content')
-		<br>
+
+<br>
+  @include('admin.alertas.alertas')
+	
  <div class="row">
  	<div class="col-md-4">
  		<div class="panel panel-default">
@@ -12,16 +20,12 @@
   <div class="panel-body">
 
 {!! Form::open(['route' =>'categoria.store', 'method'=>'POST']) !!}
-       <br />
+       
 
     <div class="form-group ">
             {!!Form::label('Nombre de la categoria', null, ['class' => 'control-label'])!!}
             {!!Form::text('nombre',null,['class'=>'form-control','placeholder'=>'Nombre de la categoria'])!!}
     </div>
-    
-
-
-
     <div class="form-group ">
             {!!Form::label('Descripcion de la categoria', null, ['class' => 'control-label'])!!}
             {!! Form::textarea('descripcion',null,['class'=>'form-control','placeholder'=>'Limite maximo 300 caracteres']) !!}
