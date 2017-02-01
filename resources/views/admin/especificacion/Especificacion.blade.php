@@ -13,13 +13,17 @@
     <h3 class="panel-title">Crear Nueva Especificacion</h3>
   </div>
   <div class="panel-body">
+  @section('CRUD')
+      {!!Html::script('js/CRUDEspecificaciones.js')!!}
+  @endsection
 
- {!! Form::open(['route' =>'especificacion.store', 'method'=>'POST']) !!}
+ {!! Form::open(['method'=>'POST','id'=>'FormEspecificacion']) !!}
        
 
     @include('admin.especificacion.form.especificacion')
 
-     {!! Form::submit('Guardar',['class'=>'btn btn-primary']); !!}
+   {{--   {!! Form::submit('Guardar',['class'=>'btn btn-primary']); !!} --}}
+     <button type="button" class="btn btn-primary" id="GuardarEspecificacion">Guardar</button>
    
   {!! Form::close() !!} 
   </div>
@@ -43,10 +47,10 @@
 				        <th style="width: 100px;">Accion</th>
 				      </tr>
 				    </thead>
-				    <tbody>
+				    <tbody id="datosEspecificacion">
 
 
-				     @foreach($especificacions as $especificacion)
+				    {{--  @foreach($especificacions as $especificacion)
               <tr>
           
                 <td>{{ $especificacion->descripcion }}</td>
@@ -56,7 +60,7 @@
                 </td>
             
               </tr>
-            @endforeach
+            @endforeach --}}
 				     
 				    </tbody>
 				</table>

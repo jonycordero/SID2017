@@ -1,17 +1,9 @@
 @extends('layout.admin')
 @section('title', 'Categoria')
 
-
-
-
-
-
 @section('content')
-
 <br>
 @include('admin.alertas.alertas')
-	
-
  <div class="row">
  	<div class="col-md-4">
  		<div class="panel panel-default">
@@ -20,14 +12,16 @@
   </div>
   <div class="panel-body">
 
-{!! Form::open(['route' =>'categoria.store', 'method'=>'POST']) !!}
-       
+      @section('CRUD')
+      {!!Html::script('js/CRUDCategoria.js')!!}
+      @endsection
 
-    @include('admin.categoria.form.Categoria')
+      {!! Form::open(['route' =>'categoria.store', 'method'=>'POST','id'=>'FormCategoria']) !!}    
+          @include('admin.categoria.form.Categoria')
 
-     {!! Form::submit('Guardar',['class'=>'btn btn-primary']); !!}
-   
-  {!! Form::close() !!}
+           {{-- {!! Form::submit('Guardar',['class'=>'btn btn-primary']); !!} --}}
+          <button type="button" class="btn btn-primary" id="GuardarCategoria">Guardar</button>
+      {!! Form::close() !!}
   </div>
 </div>
  	</div>
@@ -49,9 +43,9 @@
 				        <th style="width: 100px;">Accion</th>
 				      </tr>
 				    </thead>
-				    <tbody>
+				    <tbody id="datosCategoria">
 
-
+{{-- 
 				     @foreach($categorias as $categoria)
               <tr>
                 <td>{{ $categoria->nombre }}</td>
@@ -62,7 +56,7 @@
                 </td>
             
               </tr>
-            @endforeach
+            @endforeach --}}
 				     
 				    </tbody>
 				</table>

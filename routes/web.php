@@ -25,11 +25,12 @@ Route::get('/login', function (){
 Route::resource('categoria','CategoriaController');
 	Route::get('categoria/delete/{id}','CategoriaController@destroy');
 
+
 Route::resource('persona','PersonaController');
 	Route::get('persona/delete/{id}','PersonaController@destroy');
 
-Route::resource('usuario','UsuarioController');
-	Route::get('usuario/delete/{id}','UsuarioController@destroy');
+//Route::resource('usuario','UsuarioController');
+//	Route::get('usuario/delete/{id}','UsuarioController@destroy');
 
 Route::resource('especificacion','EspecificacionController');
 	Route::get('especificacion/delete/{id}','EspecificacionController@destroy');

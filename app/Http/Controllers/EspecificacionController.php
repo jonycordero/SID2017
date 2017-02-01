@@ -16,8 +16,8 @@ class EspecificacionController extends Controller
      */
     public function index()
     {
-         $especificacions = Especificacion::All();
-         return view('admin.especificacion.especificacion',compact('especificacions'));
+         
+         return view('admin.especificacion.especificacion');
     }
 
     /**
@@ -27,7 +27,8 @@ class EspecificacionController extends Controller
      */
     public function create()
     {
-        //
+         $especificacions = Especificacion::All();
+        return Response()->json($especificacions->toArray());
     }
 
     /**
@@ -42,8 +43,9 @@ class EspecificacionController extends Controller
             
             'descripcion' => $request['descripcion'],
             ]);
-        Session::flash('message-susses','Especificacion creada correctamente');
-        return redirect('/especificacion');
+        return Response()->json([
+            'mensaje'=>'Creado'
+            ]);
     }
 
     /**
@@ -89,7 +91,8 @@ class EspecificacionController extends Controller
     public function destroy($id)
     {
         Especificacion::destroy($id);
-        Session::flash('message-susses','Especificacion eliminado correctamente');
-        return redirect('/especificacion');
+        return Response()->json([
+            'mensaje'=>'Eliminado'
+            ]);
     }
 }

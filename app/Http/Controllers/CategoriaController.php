@@ -17,11 +17,11 @@ class CategoriaController extends Controller
      */
     public function index()
     {   
-        $categorias = Categoria::All();
-        
    
-        return view('admin.categoria.admCategoria',compact('categorias'));
+        
+        return view('admin.categoria.admCategoria');
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -29,8 +29,9 @@ class CategoriaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        
+    {   
+         $categorias = Categoria::All();
+        return Response()->json($categorias->toArray());
     }
 
     /**
@@ -45,8 +46,9 @@ class CategoriaController extends Controller
             'nombre' => $request['nombre'],
             'descripcion' => $request['descripcion'],
             ]);
-        Session::flash('message-susses','Categoria creada correctamente');
-        return redirect('/categoria');
+        return Response()->json([
+            'mensaje'=>'Creado'
+            ]);
     }
 
     /**
@@ -92,7 +94,10 @@ class CategoriaController extends Controller
     public function destroy($id)
     {
         Categoria::destroy($id);
-        Session::flash('message-susses','Categoria eliminado correctamente');
-        return redirect('/categoria');
+        //Session::flash('message-susses','Categoria eliminado correctamente');
+        //return redirect('/categoria');
+         return Response()->json([
+            'mensaje'=>'Eliminado'
+            ]);
     }
 }

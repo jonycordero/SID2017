@@ -5,6 +5,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Sistema ELNET - @yield('title')</title>
 
@@ -379,7 +380,10 @@
 
     <!-- SB Admin Scripts - Include with every page -->
     {!!Html::script('plantilla/js/sb-admin.js')!!} 
-   
+    
+    @section('CRUD')
+     
+    @show
 
     <!-- Page-Level Demo Scripts - Blank - Use for reference -->
 
