@@ -7,6 +7,7 @@ use App\Especificacion;
 use App\Http\Requests\EspecificacionRequest;
 use Session;
 
+
 class EspecificacionController extends Controller
 {
     /**
@@ -67,7 +68,8 @@ class EspecificacionController extends Controller
      */
     public function edit($id)
     {
-        //
+      $especificacion = Especificacion::find($id);
+        return Response()->json($especificacion->toArray());
     }
 
     /**
@@ -79,7 +81,12 @@ class EspecificacionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $especificacion = Especificacion::find($id);
+        $especificacion->fill($request->all());
+        $especificacion->save();
+        return Response()->json([
+            'mensaje'=>'Actualizado'
+            ]);
     }
 
     /**
