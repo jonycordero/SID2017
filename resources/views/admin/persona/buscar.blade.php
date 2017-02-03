@@ -13,6 +13,12 @@
             <div class="modal-body">
                 <p>Some text in the modal.</p>
                 <div class="row">
+                    <form class="navbar-form navbar-left pull-right" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search">
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
                     <div class="col-md-12">    
                         {!!Form::label('buscar','Buscar por dni')!!}
                     </div>
@@ -22,6 +28,8 @@
                         {!!Form::text('buscarDni',null,['class'=>'form-control','placeholder'=>'Ingresa un dni'])!!}
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="button">Buscar</button>
+
+
                         </span>
 
                     </div>
@@ -47,7 +55,7 @@
                     </tbody>
                     @endforeach
                 </table>
-                
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -56,3 +64,7 @@
 
     </div>
 </div>
+<script>
+
+</script>
+

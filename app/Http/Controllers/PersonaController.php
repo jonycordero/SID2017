@@ -97,4 +97,10 @@ class PersonaController extends Controller
         Session::flash('message-susses','Persona eliminada eliminado Correctamente');
         return Redirect::to('/persona');
     }
+    
+    public function buscarDni($dni){
+        
+         $personadni = DB::table('persona')->where('dni', '=', 100)->get();
+         return view('admin.persona.create', compact('personadni'));
+    }    
 }

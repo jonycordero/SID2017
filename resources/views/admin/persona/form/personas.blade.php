@@ -24,7 +24,7 @@
             @endforeach
 
         </table>
-        {{$personas->render()}}
+        
     </div>
 </div>
 

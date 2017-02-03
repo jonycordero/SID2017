@@ -16,7 +16,7 @@
             {!!Form::password('password',['class'=>'form-control','placeholder'=>'Ingresa el Nombre del usuario'])!!}
         </div>
         
-        @include('admin.persona.buscar')
+        
     </div>
 </div>
 
