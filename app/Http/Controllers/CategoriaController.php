@@ -70,7 +70,8 @@ class CategoriaController extends Controller
      */
     public function edit($id)
     {
-        
+        $categoria = Categoria::find($id);
+        return Response()->json($categoria->toArray());
     }
 
     /**
@@ -82,7 +83,12 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $categoria = Categoria::find($id);
+        $categoria->fill($request->all());
+        $categoria->save();
+        return Response()->json([
+            'mensaje'=>'Actualizado'
+            ]);
     }
 
     /**
@@ -94,8 +100,7 @@ class CategoriaController extends Controller
     public function destroy($id)
     {
         Categoria::destroy($id);
-        //Session::flash('message-susses','Categoria eliminado correctamente');
-        //return redirect('/categoria');
+        
          return Response()->json([
             'mensaje'=>'Eliminado'
             ]);

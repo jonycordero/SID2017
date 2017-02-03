@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
 	CargarListaEspecificaciones();
 });
@@ -27,7 +26,7 @@ function eliminarEspecificacion(btn){
 		dataType: 'json',
 	 	success: function(){
 			CargarListaEspecificaciones();
-			$("#msj-success").fadeIn();
+			alertify.success("Se elimino correctamente");
 	 	}
 	 });
 }
@@ -52,7 +51,7 @@ $("#GuardarEspecificacion").click(function(){
 		 	CargarListaEspecificaciones();
 		 	$('#FormEspecificacionGuardar')[0].reset();
 		 	$('#myModalGuardar').modal('hide');
-		 	//$("#msj-success").fadeIn();
+		 	alertify.success("Se guardo correctamente");
 		 },
 		 error:function(msj){
 		 //	$("#msj").html(msj.responseJSON.genre);
@@ -61,8 +60,6 @@ $("#GuardarEspecificacion").click(function(){
 	});
 
 });
-
-
 
 
 function AbrirModalEspecificacion() {
@@ -77,8 +74,9 @@ function AbrirModalEdiarEspecificacion(id) {
 		$(res).each(function(key,value){
 			$('#id').val(value.id);
 			$('#descripcion').val(value.descripcion);
+
 			 
-});
+	});
 });
 
 }
@@ -87,9 +85,6 @@ $("#GuardarEditEspecificacion").click(function(){
 
 	var dato = $( "#FormEspecificacionEditar" ).serialize();
 	var route = "/especificacion/"+$('#id').val();;
-
-	
-
 
 	$.ajax({
 		url: route,
@@ -104,10 +99,10 @@ $("#GuardarEditEspecificacion").click(function(){
 		 		$('#FormEspecificacionEditar')[0].reset();
 		 		$('#myModalEditar').modal('hide')
 
-		 	//$("#msj-success").fadeIn();
+		 	alertify.success("Se edito correctamente");
 		 },
 		 error:function(msj){
-		 	alert('fallo: '+msj);
+		 	alert('fallo la consulta ajax');
 		 //	$("#msj").html(msj.responseJSON.genre);
 		// 	$("#msj-error").fadeIn();
 		 }

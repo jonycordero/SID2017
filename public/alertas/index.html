@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>hola</title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="js/alertify.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/alertify.core.css">
+	<link rel="stylesheet" type="text/css" href="css/alertify.default.css">
+
+<script type="text/javascript">
+		$(document).ready(function(){
+			
+			$('#alertaError').click(function(){
+				//alert('aaaaa');
+				alertify.error('Error message');
+
+			
+			});
+
+
+
+			$('#alertaNormal').click(function(){
+				//alert('aaaaa');
+				 alertify.log("Esto es una notificación cualquiera.");
+
+			
+			});
+
+			$('#alertaok').click(function(){
+				//alert('aaaaa');
+				alertify.success("Visita nuestro <a href=\"http://blog.reaccionestudio.com/\" style=\"color:white;\" target=\"_blank\"><b>BLOG.</b></a>"); 
+				alertify.success("ksdjue2fhgksj"); 
+
+			
+			});
+		});
+
+
+
+	</script>
+
+
+</head>
+<body>
+
+	<div>
+		<button id="alertaError">Error</button>
+		<button id="alertaNormal">Normal</button>
+		<button id="alertaok">ok</button>
+	</div>
+	
+
+
+
+
+
+
+</body>
+</html>

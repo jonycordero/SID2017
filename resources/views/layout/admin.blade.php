@@ -14,7 +14,11 @@
 
     {!!Html::style('/plantilla/font-awesome/css/font-awesome.css')!!}
    
-  
+ 
+    {!!Html::style('/alertas/css/alertify.core.css')!!}
+
+    {!!Html::style('/alertas/css/alertify.default.css')!!}
+
 
     <!-- Page-Level Plugin CSS - Blank -->
 
@@ -375,11 +379,12 @@
     <script src=""></script>
     {!!Html::script('plantilla/js/plugins/metisMenu/jquery.metisMenu.js')!!} 
 
+    {!!Html::script('alertas/js/alertify.min.js')!!} 
 
     <!-- Page-Level Plugin Scripts - Blank -->
 
     <!-- SB Admin Scripts - Include with every page -->
-    {!!Html::script('plantilla/js/sb-admin.js')!!} 
+    {!!Html::script('/plantilla/js/sb-admin.js')!!} 
     
     @section('CRUD')
      

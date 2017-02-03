@@ -20,7 +20,9 @@
             <h3 class="panel-title">Lista de Especificacion</h3>
           </dir>
           <div class="col-md-6 text-right">
-            <button type="button" class="btn btn-success" onclick="AbrirModalEspecificacion()">Agregar especificacion</button>
+            <button type="button" class="btn btn-success btn-xs" onclick="AbrirModalEspecificacion()">
+            <span class="glyphicon glyphicon-plus"></span>
+            Agregar especificacion</button>
           </div>
           </div>  			
 
@@ -77,7 +79,7 @@
       <div class="modal-body">
         {!! Form::open(['method'=>'PUT','id'=>'FormEspecificacionEditar']) !!}
        
-        <input type="" id="id"> {{-- hidden --}}
+        <input type="hidden" id="id"> {{-- hidden --}}
        <div class="form-group ">
             {!!Form::label('Especificacion', null, ['class' => 'control-label'])!!}
             {!! Form::textarea('descripcion',null,['class'=>'form-control','placeholder'=>'Limite maximo 300 caracteres','id'=>'descripcion']) !!}
