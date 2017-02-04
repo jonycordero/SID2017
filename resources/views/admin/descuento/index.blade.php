@@ -5,7 +5,7 @@
 <br>
 
 @section('CRUD')
-{!!Html::script('js/CRUDCategoria.js')!!}
+{!!Html::script('js/CRUDDescuento.js')!!}
 @endsection
 <div class="row">
     <div class="col-md-12">
@@ -46,7 +46,7 @@
 
 </div>
 
-<div id="myModalDescuento" class="modal fade" role="dialog">
+<div id="myModalEditarDescuento" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -57,20 +57,20 @@
 
             </div>
             <div class="modal-body">
-                <form method="PUT" id="FormDescuentoController">
+                <form method="PUT" id="FormDescuentoEdit">
 
                     <input type="hidden" id="id">
 
                     <div class="form-group ">
-                        <label class="form-control">Monto acumulativo:</label>
+                        <label >Monto acumulativo:</label>
                         <div class="input-group">
-                            <input type="text" id="nombre" class="form-control" placeholder="Inserte el monto acumulado" aria-label="Amount (to the nearest dollar)">
+                            <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Inserte el monto acumulado" aria-label="Amount (to the nearest dollar)">
                         </div>
                     </div>
                     <div class="form-group ">
-                        <label class="form-control">Tasa de descuento:</label>
+                        <label >Tasa de descuento:</label>
                         <div class="input-group">
-                            <input type="number" id="tasa_descuento" class="form-control" placeholder="Inserte la tasa" aria-label="Amount (to the nearest dollar)">
+                            <input type="text" name="tasa_descuento" id="tasa_descuento" class="form-control" placeholder="Inserte la tasa" aria-label="Amount (to the nearest dollar)">
                             <span class="input-group-addon">%</span>
                         </div>
                     </div>
@@ -104,7 +104,7 @@
 
 
 
-                    @include('admin.Categoria.form.Categoria')
+                    @include('admin.descuento.form.descuento')
 
                      
                 </div>

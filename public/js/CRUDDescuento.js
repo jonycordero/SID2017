@@ -3,7 +3,7 @@ $(document).ready(function(){
 	CargarListaDescuento();
 });
 
-function CargarListaCategoria() {
+function CargarListaDescuento() {
 
 	var tablaDatos = $("#datosDescuento");
 	var route = "descuento/create";
@@ -11,7 +11,7 @@ function CargarListaCategoria() {
 	$("#datosDescuento").empty();
 	$.get(route, function(res){
 		$(res).each(function(key,value){
-			 tablaDatos.append("<tr><td>"+value.nombre+"</td><td>"+value.tasa_descuento+"</td><td style='width: 150px'><button class='btn btn-danger btn-xs' onclick='eliminarDescuento("+value.id+")'>Eliminar</button><button class='btn btn-danger btn-xs' onclick='AbrirModalEdiarDescuento("+value.id+")'> Editar</button></td></tr>");
+			 tablaDatos.append("<tr><td>"+value.nombre+"</td><td>"+value.tasa_descuento+"</td><td style='width: 150px'><button class='btn btn-danger btn-xs' onclick='eliminarDescuento("+value.id+")'>Eliminar</button><button class='btn btn-danger btn-xs' onclick='AbrirModalEditarDescuento("+value.id+")'> Editar</button></td></tr>");
 		});
 });
 }
@@ -53,7 +53,7 @@ $("#GuardarDescuento").click(function(){
 		data:dato,
 
 		 success:function(){
-		 	CargarListaCategoria();
+		 	CargarListaDescuento();
 		 	$('#FormDescuentoGuardar')[0].reset();
 		 	$('#myModalGuardar').modal('hide');
 		 	alertify.success("Se guardo correctamente");
@@ -74,8 +74,8 @@ function AbrirModalDescuento() {
 }
 
 
-function AbrirModalEdiarDescuento(id) {
-	$('#myModalEditar').modal('show');
+function AbrirModalEditarDescuento(id) {
+	$('#myModalEditarDescuento').modal('show');
 
 	var route = "descuento/"+id+"/edit";
 	$.get(route, function(res){
@@ -93,21 +93,21 @@ function AbrirModalEdiarDescuento(id) {
 
 $("#GuardarEditDescuento").click(function(){
 
-	var dato = $( "#FormDescuentoEditar" ).serialize();
+	var dato = $( "#FormDescuentoEdit" ).serialize();
 	var route = "/descuento/"+$('#id').val();;
 
 	$.ajax({
 		url: route,
 		headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-		type: 'POST',
+		type: 'PUT',
 		dataType: 'json',
 		data:dato,
 
 		 success:function(){
 		 	
 		 	CargarListaDescuento();
-		 		$('#FormDescuentoEditar')[0].reset();
-		 		$('#myModalEditar').modal('hide')
+		 		$('#FormDescuentoEdit')[0].reset();
+		 		$('#myModalEditarDescuento').modal('hide');
 		 		alertify.success("Se editó el descuento");
 
 		 	//$("#msj-success").fadeIn();

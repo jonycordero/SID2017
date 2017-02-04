@@ -13,7 +13,7 @@ class DescuentoRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,6 +25,10 @@ class DescuentoRequest extends FormRequest
     {
         return [
             //
+          
+            'nombre' => 'required|max:20',
+            'tasa_descuento' => 'required|max:20',
+            
         ];
     }
 }

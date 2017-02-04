@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Descuento;
+use Session;
+use App\Http\Requests\DescuentoRequest;
 
 class DescuentoController extends Controller
 {
@@ -14,6 +17,7 @@ class DescuentoController extends Controller
     public function index()
     {
         //
+        return view('admin.descuento.index');
     }
 
     /**
@@ -24,6 +28,8 @@ class DescuentoController extends Controller
     public function create()
     {
         //
+        $descuentos = Descuento::All();
+        return Response()->json($descuentos->toArray());
     }
 
     /**
@@ -32,9 +38,16 @@ class DescuentoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DescuentoRequest $request)
     {
         //
+        Descuento::create([
+            'nombre' => $request['nombre'],
+            'tasa_descuento' => $request['tasa_descuento'],
+            ]);
+        return Response()->json([
+            'mensaje'=>'Creado'
+            ]);
     }
 
     /**
@@ -57,6 +70,8 @@ class DescuentoController extends Controller
     public function edit($id)
     {
         //
+        $descuento = Descuento::find($id);
+        return Response()->json($descuento->toArray());
     }
 
     /**
@@ -69,6 +84,12 @@ class DescuentoController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $descuento = Descuento::find($id);
+        $descuento->fill($request->all());
+        $descuento->save();
+        return Response()->json([
+            'mensaje'=>'Actualizado'
+            ]);
     }
 
     /**
@@ -80,5 +101,11 @@ class DescuentoController extends Controller
     public function destroy($id)
     {
         //
+        Descuento::destroy($id);
+        
+         return Response()->json([
+            'mensaje'=>'Eliminado'
+            ]);
+         
     }
 }
