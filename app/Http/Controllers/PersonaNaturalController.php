@@ -13,7 +13,9 @@ class PersonaNaturalController extends Controller
      */
     public function index()
     {
-        //
+         return view('admin.personanatural.personanatural');
+
+
     }
 
     /**

@@ -13,7 +13,7 @@ class PersonaJuridicaController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.personajuridica.personajuridica');
     }
 
     /**

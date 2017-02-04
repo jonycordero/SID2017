@@ -13,7 +13,7 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.pedido.pedido');
     }
 
     /**

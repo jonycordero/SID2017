@@ -44,11 +44,17 @@ Route::resource('persona-natural','PersonaNaturalController');
 Route::resource('pago','PagoController');
 Route::resource('descuento','DescuentoController');
 Route::resource('detalle-pago','DetallePagoController');
-Route::resource('detalle-pedido','DetallePedidoPagoController');
+Route::resource('detalle-pedido','DetallePedidoController');
 Route::resource('detalle-registro','DetalleRegistroController');
 Route::resource('detalle-venta','DetalleVentaController');
 Route::resource('stock','DetalleStockController');
 Route::resource('venta','VentaController');
+
+
+
+
+
+
 
 
 

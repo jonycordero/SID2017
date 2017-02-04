@@ -13,7 +13,10 @@ class TrabajadorController extends Controller
      */
     public function index()
     {
-        //
+        
+ return view('admin.trabajador.trabajador');
+
+
     }
 
     /**
