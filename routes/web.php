@@ -27,11 +27,32 @@ Route::resource('categoria','CategoriaController');
 
 
 Route::resource('persona','PersonaController');
-	Route::get('persona/delete/{id}','PersonaController@destroy');
+	//Route::get('persona/delete/{id}','PersonaController@destroy');
 
 Route::resource('usuario','UsuarioController');
-	Route::get('usuario/delete/{id}','UsuarioController@destroy');
+	//Route::get('usuario/delete/{id}','UsuarioController@destroy');
 
 Route::resource('especificacion','EspecificacionController');
-	Route::get('especificacion/delete/{id}','EspecificacionController@destroy');
+	//Route::get('especificacion/delete/{id}','EspecificacionController@destroy');
+
+Route::resource('producto','ProductoController');
+
+Route::resource('registro','RegistroController');
+
+Route::resource('persona-juridica','PersonaJuridicaController');
+Route::resource('pedido','PedidoController');
+Route::resource('trabajador','TrabajadorController');
+Route::resource('persona-natural','PersonaNaturalController');
+Route::resource('pago','PagoController');
+Route::resource('descuento','DescuentoController');
+Route::resource('detalle-pago','DetallePagoController');
+Route::resource('detalle-pedido','DetallePedidoPagoController');
+Route::resource('detalle-registro','DetalleRegistroController');
+Route::resource('detalle-venta','DetalleVentaController');
+Route::resource('stock','DetalleStockController');
+Route::resource('venta','VentaController');
+
+
+
+
 
