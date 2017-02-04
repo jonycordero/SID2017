@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use App\Http\Requests\PersonaCreateRequest;
 use Session;
 use Redirect;
 use App\Persona;
+
 class PersonaController extends Controller
 {
     /**
@@ -16,9 +17,7 @@ class PersonaController extends Controller
     public function index()
     {
         //
-        $personas = Persona::paginate(5);
-        
-        return view('admin.persona.create', compact('personas'));
+        return view('admin.persona.create');
     }
 
     /**
@@ -29,6 +28,9 @@ class PersonaController extends Controller
     public function create()
     {
         //
+        $personas = Persona::All();
+        return Response()->json($personas->toArray());
+        
     }
 
     /**
@@ -37,8 +39,10 @@ class PersonaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PersonaCreateRequest $request)
     {
+        
+        
         //
         Persona::create([
             'dni' => $request['dni'],
@@ -46,8 +50,9 @@ class PersonaController extends Controller
             'apellido_paterno' => $request['apellido_paterno'],
             'apellido_materno' => $request['apellido_materno'],
         ]);
-        Session::flash('message-susses','Persona Guardado Correctamente');
-        return Redirect::to('/persona');
+        return response()->json([
+            'mensaje'=>'Creado'
+        ]);
     }
 
     /**
@@ -70,6 +75,8 @@ class PersonaController extends Controller
     public function edit($id)
     {
         //
+        $persona = Persona::find($id);
+        return Response()->json($persona->toArray());
     }
 
     /**
@@ -82,6 +89,12 @@ class PersonaController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $persona = Persona::find($id);
+        $persona->fill($request->all());
+        $persona->save();
+        return Response()->json([
+            'mensaje'=>'Actualizado'
+            ]);
     }
 
     /**
@@ -94,8 +107,10 @@ class PersonaController extends Controller
     {
         //
         Persona::destroy($id);
-        Session::flash('message-susses','Persona eliminada eliminado Correctamente');
-        return Redirect::to('/persona');
+        
+         return Response()->json([
+            'mensaje'=>'Eliminado'
+            ]);
     }
     
     public function buscarDni($dni){
