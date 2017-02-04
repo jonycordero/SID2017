@@ -36,9 +36,7 @@ Route::resource('especificacion','EspecificacionController');
 	//Route::get('especificacion/delete/{id}','EspecificacionController@destroy');
 
 Route::resource('producto','ProductoController');
-
 Route::resource('registro','RegistroController');
-
 Route::resource('persona-juridica','PersonaJuridicaController');
 Route::resource('pedido','PedidoController');
 Route::resource('trabajador','TrabajadorController');
