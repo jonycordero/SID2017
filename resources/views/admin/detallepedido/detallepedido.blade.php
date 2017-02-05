@@ -1,5 +1,6 @@
+
 @extends('layout.admin')
-@section('title', 'Detalle de pago')
+@section('title', 'Detalle Pedido')
 
 @section('content')
 <br>
@@ -11,7 +12,7 @@
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-               <h3 class="panel-title">***********</h3>
+               <h3 class="panel-title">Detalle Pedido</h3>
             </div>
             <div class="panel-body">
                 <div class="table-responsive">

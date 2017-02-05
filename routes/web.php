@@ -47,7 +47,7 @@ Route::resource('detalle-pago','DetallePagoController');
 Route::resource('detalle-pedido','DetallePedidoController');
 Route::resource('detalle-registro','DetalleRegistroController');
 Route::resource('detalle-venta','DetalleVentaController');
-Route::resource('stock','DetalleStockController');
+Route::resource('stock','StockController');
 Route::resource('venta','VentaController');
 
 

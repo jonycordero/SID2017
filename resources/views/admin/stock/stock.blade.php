@@ -1,5 +1,5 @@
 @extends('layout.admin')
-@section('title', 'Detalle de pago')
+@section('title', '******')
 
 @section('content')
 <br>
