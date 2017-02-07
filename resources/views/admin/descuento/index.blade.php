@@ -102,8 +102,6 @@
 
                 <div class="form-group ">
 
-
-
                     @include('admin.descuento.form.descuento')
 
                      
@@ -117,6 +115,6 @@
 
         </div>
     </div>
-
+</div>
 
     @endsection

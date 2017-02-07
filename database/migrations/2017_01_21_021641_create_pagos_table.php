@@ -18,12 +18,11 @@ class CreatePagosTable extends Migration
             $table->decimal('monto_total',7,2);
             $table->enum('tipo_pago', ['credito', 'contado']);
             $table->boolean('estado_pago');
-            $table->decimal('descuento',4,2);
+            $table->decimal('descuento',7,2);
             $table->decimal('monto_con_descuento',7,2);
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *

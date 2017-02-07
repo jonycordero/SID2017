@@ -13,7 +13,7 @@ class PagoRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,6 +24,12 @@ class PagoRequest extends FormRequest
     public function rules()
     {
         return [
+            
+            'monto_total' => 'required',
+            'tipo_pago' => 'required',
+            'estado_pago' => 'required',
+            'descuento' => 'required',
+            'monto_con_descuento' => 'required',
             //
         ];
     }

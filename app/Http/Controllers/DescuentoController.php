@@ -28,8 +28,11 @@ class DescuentoController extends Controller
     public function create()
     {
         //
-        $descuentos = Descuento::All();
+        $descuentos = Descuento::orderBy('nombre', 'asc')->get();
+        
         return Response()->json($descuentos->toArray());
+        
+        
     }
 
     /**

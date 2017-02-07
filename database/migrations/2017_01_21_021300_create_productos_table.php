@@ -1,9 +1,7 @@
 <?php
-
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
 class CreateProductosTable extends Migration
 {
     /**
@@ -21,17 +19,14 @@ class CreateProductosTable extends Migration
             $table->string('presentacion',15);
             $table->decimal('peso_neto',6,2);
             $table->decimal('peso_caja',6,2);
-            $table->string('img',30);
-            $table->timestamps();
-            
+            $table->string('img',200);
+            $table->timestamps();       
             $table->integer('categoria_id')->unsigned();
             $table->foreign('categoria_id')->references('id')->on('categorias');
-            
             //$table->integer('especificacion_id')->unsigned();
             //$table->foreign('especificacion_id')->references('id')->on('especificaciones');
         });
     }
-
     /**
      * Reverse the migrations.
      *
