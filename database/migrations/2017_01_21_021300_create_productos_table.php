@@ -13,6 +13,7 @@ class CreateProductosTable extends Migration
     {
         Schema::create('productos', function (Blueprint $table) {
             $table->increments('id');
+            //---------
             $table->string('codigo',6);
             $table->string('nombre',50);
             $table->string('descripcion',300);

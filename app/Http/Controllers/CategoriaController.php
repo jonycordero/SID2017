@@ -17,8 +17,6 @@ class CategoriaController extends Controller
      */
     public function index()
     {   
-   
-        
         return view('admin.categoria.admCategoria');
     }
 

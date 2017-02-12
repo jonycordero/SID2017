@@ -1,6 +1,62 @@
 $(document).ready(function(){
+
+	CargarListaProductos();
+	CargarListaCategoria();
 	CargarListaEspecificaciones();
 });
+
+function CargarListaProductos() {
+
+	var tablaDatos = $("#datosProductos");
+	var route = "producto/create";
+
+	$("#datosProductos").empty();
+	$.get(route, function(res){
+		$(res).each(function(key,value){
+			 tablaDatos.append("<tr><td>"+value.codigo+"</td><td>"+value.p_nombre+"</td><td>"+value.presentacion+"</td><td>"+value.c_nombre+"</td><td style='width: 150px'><button class='btn btn-danger btn-xs' onclick='eliminarEspecificacion("+value.id+")'>Eliminar</button><button class='btn btn-danger btn-xs' onclick='AbrirModalEdiarEspecificacion("+value.id+")'>Editar</button><button class='btn btn-danger btn-xs' onclick='AbrirModalMasDetalle("+value.id+")'>Ver</button></td></tr>");
+		});
+});
+}
+
+function AbrirModalMasDetalle(id) {
+	var tablaDatos = $("#datosProductos");
+	var route = "producto/"+id;
+alert(route);
+	$("#datosProductos").empty();
+	$.get(route, function(res){
+		$(res).each(function(key,value){
+			
+	$('#more_codigo').html(value.codigo);
+	$('#more_nombre').html(value.p_nombre);
+	$('#more_categoria').html(value.c_nombre);
+	$('#more_peso_neto').html(value.more_peso_neto);
+	$('#more_peso_caja').html(value.more_peso_caja);
+	$('#more_especificacion').html(value.e_nombre);
+	$('#more_presentacion').html(value.presentacion);
+	$('#more_descripcion').html(value.descripcion);
+	$('#myModalMasDetalle').modal('show');
+
+
+		});
+});
+
+
+}
+
+
+
+function CargarListaCategoria() {
+
+	var tablaDatos = $("#datosCategoria");
+	var route = "categoria/create";
+
+	$("#datosCategoria").empty();
+	$.get(route, function(res){
+		$(res).each(function(key,value){
+			 tablaDatos.append("<tr><td>"+value.nombre+"</td><td>"+value.descripcion+"</td><td><button class='btn btn-danger btn-xs' onclick='agregarCategoria("+value.id+",`"+value.nombre+"`)'>Agregar</button></td></tr>");
+		});
+});
+}
 
 function CargarListaEspecificaciones() {
 
@@ -10,10 +66,29 @@ function CargarListaEspecificaciones() {
 	$("#datosEspecificacion").empty();
 	$.get(route, function(res){
 		$(res).each(function(key,value){
-			 tablaDatos.append("<tr><td>"+value.descripcion+"</td><td>"+value.created_at+"</td><td style='width: 150px'><button class='btn btn-danger btn-xs' onclick='eliminarEspecificacion("+value.id+")'>Eliminar</button><button class='btn btn-danger btn-xs' onclick='AbrirModalEdiarEspecificacion("+value.id+")'>Editar</button></td></tr>");
+			 tablaDatos.append("<tr><td>"+value.descripcion+"</td><td>"+value.created_at+"</td><td><button class='btn btn-danger btn-xs' onclick='agregarEspecificacion("+value.id+",`"+value.descripcion+"`)'>Agregar</button></td></tr>");
 		});
 });
 }
+
+
+
+
+
+
+
+
+function agregarCategoria(id,nombre) {
+	$('#categoria_id').val(id);
+	$('#nombre_categoria').val(nombre);
+	$('#myModalCategoria').modal('hide');
+}
+function agregarEspecificacion(id,nombre) {
+	$('#especificacion_id').val(id);
+	$('#especificacion_nombre').val(nombre);
+	$('#myModalEspecificacion').modal('hide');
+}
+
 
 
 
@@ -33,38 +108,49 @@ function eliminarEspecificacion(btn){
 
 
 
-$("#GuardarEspecificacion").click(function(){
+$("#GuardarProducto").click(function(){
 
-	var dato = $( "#FormEspecificacionGuardar" ).serialize();
-	var route = "/especificacion";
-	//var token = $("#token").val();
 
-	$.ajax({
-		url: route,
-		headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-		type: 'POST',
-		dataType: 'json',
-		data:dato,
+	
+	//var dato = $( "#FromProducto" ).serialize();
+	var dato = new FormData($('#FromProducto')[0]);
+	var route = "/producto";
+	
 
-		 success:function(){
+	 $.ajax({
+	 	url: route,
+	 	headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+	 	type: 'POST',
+	 	dataType: 'json',
+	 	data:dato,
+	 	contentType:false,
+	 	processData:false,
+
+	 	 success:function(){
 		 	
-		 	CargarListaEspecificaciones();
-		 	$('#FormEspecificacionGuardar')[0].reset();
-		 	$('#myModalGuardar').modal('hide');
-		 	alertify.success("Se guardo correctamente");
-		 },
-		 error:function(msj){
-		 //	$("#msj").html(msj.responseJSON.genre);
-		// 	$("#msj-error").fadeIn();
-		 }
-	});
+	 	 	//CargarListaEspecificaciones();
+	 	 	$('#FromProducto')[0].reset();
+	 	 	$('#list').html('<h1>Foto Producto</h1>');
+	 	 	alertify.success("Se guardo correctamente");
+	 	 },
+	 	 error:function(msj){
+	 	 	alertify.error("fallo la consulta Ajax");
+	 	 	//$("#msj").html(msj.responseJSON.genre);
+	 	 	//$("#msj-error").fadeIn();
+	 	 }
+	 });
 
 });
 
 
-function AbrirModalEspecificacion() {
-	$('#myModalGuardar').modal('show');
+function AbrirModalCategoria() {
+	$('#myModalCategoria').modal('show');
 }
+function AbrirModalEspecificacion() {
+	$('#myModalEspecificacion').modal('show');
+}
+
+
 
 function AbrirModalEdiarEspecificacion(id) {
 	$('#myModalEditar').modal('show');
@@ -102,7 +188,7 @@ $("#GuardarEditEspecificacion").click(function(){
 		 	alertify.success("Se edito correctamente");
 		 },
 		 error:function(msj){
-		 	alert('fallo la consulta ajax');
+		 	alertify.error("fallo la consulta Ajax");
 		 //	$("#msj").html(msj.responseJSON.genre);
 		// 	$("#msj-error").fadeIn();
 		 }

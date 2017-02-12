@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Producto;
+use Storage;
 
 class ProductoController extends Controller
 {
@@ -23,7 +25,8 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        //
+        $producto = Producto::query_producto();
+        return Response()->json($producto->toArray());
     }
 
     /**
@@ -34,7 +37,23 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    Producto::create($request->all());
+
+    $img = $request->file('img');
+    //$file_route = $img->getClientOriginalName();
+
+    $file_route = "PRODUCTO".$request['codigo'].".jpg";
+
+
+
+    Storage::disk('fotosproductos')->put($file_route,file_get_contents($img->getRealPath()));
+
+
+
+        
+        return Response()->json([
+            'mensaje'=>'Creado'
+            ]);
     }
 
     /**
@@ -45,7 +64,8 @@ class ProductoController extends Controller
      */
     public function show($id)
     {
-        //
+        $producto = Producto::query_show_producto($id);
+        return Response()->json($producto->toArray());
     }
 
     /**
