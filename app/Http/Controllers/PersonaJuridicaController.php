@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\PersonaJuridica;
 class PersonaJuridicaController extends Controller
 {
     /**
@@ -35,7 +35,10 @@ class PersonaJuridicaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        PersonaJuridica::create($request->all());
+        return Response()->json([
+            'mensaje'=>'Creado'
+            ]);
     }
 
     /**

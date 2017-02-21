@@ -11,6 +11,7 @@
         </div>
         <div class="modal-body">
           @yield('body-modal')
+          <br>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
