@@ -76,7 +76,8 @@ class ProductoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $producto = Producto::query_show_producto($id);
+        return Response()->json($producto->toArray());
     }
 
     /**
@@ -99,6 +100,10 @@ class ProductoController extends Controller
      */
     public function destroy($id)
     {
-        //
+         Producto::destroy($id);
+        
+         return Response()->json([
+            'mensaje'=>'Eliminado'
+            ]);
     }
 }

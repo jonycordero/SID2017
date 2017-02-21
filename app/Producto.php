@@ -33,7 +33,7 @@ class Producto extends Model
         return DB::table('productos')
             ->join('categorias','categorias.id','=','productos.categoria_id')
             ->join('especificacions','especificacions.id','=','productos.especificacion_id')
-            ->select('productos.id','productos.codigo','productos.nombre as p_nombre','productos.peso_neto','productos.peso_caja','productos.presentacion','especificacions.id as especificacion_id','especificacions.descripcion as e_nombre','categorias.id','categorias.nombre as c_nombre','productos.descripcion')
+            ->select('productos.id','productos.codigo','productos.nombre as p_nombre','productos.peso_neto','productos.peso_caja','productos.presentacion','especificacions.id as especificacion_id','especificacions.descripcion as e_nombre','categorias.id as categoria_id','categorias.nombre as c_nombre','productos.descripcion')
             ->where('productos.id','=',$id)
             ->get();
 

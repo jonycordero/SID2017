@@ -23,7 +23,8 @@ class PersonaJuridicaController extends Controller
      */
     public function create()
     {
-        //
+        $personajuridica = PersonaJuridica::All();
+        return Response()->json($personajuridica->toArray());
     }
 
     /**

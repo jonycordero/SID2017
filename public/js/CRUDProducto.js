@@ -1,4 +1,6 @@
 $(document).ready(function(){
+	// $('#btn-guardar').html('<button type="button" id="GuardarProducto" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk" ></span> Guardar</button>')
+	// $('#btn-editar').html('');
 
 	CargarListaProductos();
 	CargarListaCategoria();
@@ -13,7 +15,7 @@ function CargarListaProductos() {
 	$("#datosProductos").empty();
 	$.get(route, function(res){
 		$(res).each(function(key,value){
-			 tablaDatos.append("<tr><td>"+value.codigo+"</td><td>"+value.p_nombre+"</td><td>"+value.presentacion+"</td><td>"+value.c_nombre+"</td><td style='width: 150px'><button class='btn btn-danger btn-xs' onclick='eliminarEspecificacion("+value.id+")'>Eliminar</button><button class='btn btn-danger btn-xs' onclick='AbrirModalEdiarEspecificacion("+value.id+")'>Editar</button><button class='btn btn-danger btn-xs' onclick='AbrirModalMasDetalle("+value.id+")'>Ver</button></td></tr>");
+			 tablaDatos.append("<tr><td>"+value.codigo+"</td><td>"+value.p_nombre+"</td><td>"+value.presentacion+"</td><td>"+value.c_nombre+"</td><td style='width: 150px'><button class='btn btn-danger btn-xs' onclick='eliminarProducto("+value.id+")'>Eliminar</button><button class='btn btn-danger btn-xs' onclick='AbrirEdiarProducto("+value.id+")'>Editar</button><button class='btn btn-danger btn-xs' onclick='AbrirModalMasDetalle("+value.id+")'>Ver</button></td></tr>");
 		});
 });
 }
@@ -21,24 +23,24 @@ function CargarListaProductos() {
 function AbrirModalMasDetalle(id) {
 	var tablaDatos = $("#datosProductos");
 	var route = "producto/"+id;
-alert(route);
-	$("#datosProductos").empty();
-	$.get(route, function(res){
-		$(res).each(function(key,value){
-			
-	$('#more_codigo').html(value.codigo);
-	$('#more_nombre').html(value.p_nombre);
-	$('#more_categoria').html(value.c_nombre);
-	$('#more_peso_neto').html(value.more_peso_neto);
-	$('#more_peso_caja').html(value.more_peso_caja);
-	$('#more_especificacion').html(value.e_nombre);
-	$('#more_presentacion').html(value.presentacion);
-	$('#more_descripcion').html(value.descripcion);
-	$('#myModalMasDetalle').modal('show');
-
-
-		});
-});
+	//alert(route);
+		//$("#datosProductos").empty();
+		$.get(route, function(res){
+			$(res).each(function(key,value){
+				
+		$('#more_codigo').html(value.codigo);
+		$('#more_nombre').html(value.p_nombre);
+		$('#more_categoria').html(value.c_nombre);
+		$('#more_peso_neto').html(value.peso_neto);
+		$('#more_peso_caja').html(value.peso_caja);
+		$('#more_especificacion').html(value.e_nombre);
+		$('#more_presentacion').html(value.presentacion);
+		$('#more_descripcion').html(value.descripcion);
+		
+		$('#more_img').html('<img class="thumb img-thumbnail img-responsive"  src="/fotosproductos/PRODUCTO'+value.codigo+'.jpg"/>');
+		$('#myModalMasDetalle').modal('show');
+			});
+	});
 
 
 }
@@ -73,11 +75,6 @@ function CargarListaEspecificaciones() {
 
 
 
-
-
-
-
-
 function agregarCategoria(id,nombre) {
 	$('#categoria_id').val(id);
 	$('#nombre_categoria').val(nombre);
@@ -92,16 +89,18 @@ function agregarEspecificacion(id,nombre) {
 
 
 
-function eliminarEspecificacion(btn){
-	var route = "/especificacion/"+btn;
+function eliminarProducto(btn){
+
+	var route = "/producto/"+btn;
 	 $.ajax({
 	 	url: route,
 	 	headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
 	 	type: 'DELETE',
 		dataType: 'json',
 	 	success: function(){
-			CargarListaEspecificaciones();
+			CargarListaProductos();
 			alertify.success("Se elimino correctamente");
+			
 	 	}
 	 });
 }
@@ -128,7 +127,7 @@ $("#GuardarProducto").click(function(){
 
 	 	 success:function(){
 		 	
-	 	 	//CargarListaEspecificaciones();
+	 	 	CargarListaProductos();
 	 	 	$('#FromProducto')[0].reset();
 	 	 	$('#list').html('<h1>Foto Producto</h1>');
 	 	 	alertify.success("Se guardo correctamente");
@@ -152,14 +151,33 @@ function AbrirModalEspecificacion() {
 
 
 
-function AbrirModalEdiarEspecificacion(id) {
-	$('#myModalEditar').modal('show');
+function AbrirEdiarProducto(id) {
+	//$('#myModalEditar').modal('show');
 
-	var route = "especificacion/"+id+"/edit";
+	var route = "producto/"+id+"/edit";
 	$.get(route, function(res){
 		$(res).each(function(key,value){
-			$('#id').val(value.id);
+
+			$('#btn-guardar').html('');
+			$('#btn-editar').html('<button type="button" id="GuardarEditProducto" class="btn btn-info"><span class="glyphicon glyphicon-floppy-disk" ></span> Actualizar</button><button type="button" id="CancelarProducto" class="btn btn-danger"><span class="glyphicon glyphicon-floppy-disk" ></span> Cancelar</button>');
+			
+
+			$('#codigo').val(value.codigo);
+			$('#nombre').val(value.p_nombre);
+			$('#peso_neto').val(value.peso_neto);
+			$('#peso_caja').val(value.peso_caja);
+			$('#presentacion').val(value.presentacion);
+
+			$('#especificacion_id').val(value.especificacion_id);
+			$('#especificacion_nombre').val(value.e_nombre);
+
+			$('#categoria_id').val(value.categoria_id);
+			$('#nombre_categoria').val(value.c_nombre);
+
 			$('#descripcion').val(value.descripcion);
+			$('#list').html('<img class="thumb img-thumbnail img-responsive" height="100" width="230" src="/fotosproductos/PRODUCTO'+value.codigo+'.jpg"/>');
+		
+
 
 			 
 	});

@@ -37,20 +37,6 @@
                             </tr>
                         </thead>
                         <tbody id="datosCategoria">
-
-                            {{-- 
-				     @foreach($categorias as $categoria)
-                            <tr>
-                            <td>{{ $categoria-                                >nombre }}</td>
-                                <td>{{ $categoria->descripcion }}</td>
-                                <td>{{ $categoria->created_at }}</td>
-                                <td>
-                                    <a class="btn btn-danger btn-xs" href="{!! URL::to('categoria/delete') !!}/{{ $categoria->id }}" >Eliminar</a>
-                                </td>
-
-                            </tr>
-                            @endforeach --}}
-
                         </tbody>
                     </table>
                 </div>
@@ -79,16 +65,9 @@
                 <input type="hidden" id="id"> {{-- hidden --}}
 
 
+                @include('admin.Categoria.form.Categoria')
 
-
-                <div class="form-group ">
-                    {!!Form::label('Nombre de la categoria', null, ['class' => 'control-label'])!!}
-                    {!!Form::text('nombre',null,['id'=>'nombre','class'=>'form-control','placeholder'=>'Nombre de la categoria'])!!}
-                </div>
-                <div class="form-group ">
-                    {!!Form::label('Descripcion de la categoria', null, ['class' => 'control-label'])!!}
-                    {!! Form::textarea('descripcion',null,['id'=>'descripcion','class'=>'form-control','placeholder'=>'Limite maximo 300 caracteres']) !!}
-                </div>
+                
 
 
 

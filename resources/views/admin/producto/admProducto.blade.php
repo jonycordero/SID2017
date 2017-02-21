@@ -100,8 +100,16 @@
 						</div>
 						 
 						<div class="form-group col-md-12">
-							<button type="button" id="GuardarProducto" class="btn btn-primary">
-							<span class="glyphicon glyphicon-floppy-disk" ></span> Guardar</button> 
+							<strong id="btn-guardar">
+								<button type="button" id="GuardarProducto" class="btn btn-primary">
+							<span class="glyphicon glyphicon-floppy-disk" ></span> Guardar</button>
+							</strong>
+							<strong id="btn-editar">
+								<button type="button" id="GuardarEditProducto" class="btn btn-info">
+							<span class="glyphicon glyphicon-floppy-disk" ></span> Actualizar</button>
+							<button type="button" id="CancelarProducto" class="btn btn-danger">
+							<span class="glyphicon glyphicon-floppy-disk" ></span> Cancelar</button>
+							</strong> 
 						</div>
 						  
 					</form>
@@ -168,7 +176,9 @@
       <div class="modal-body">
         <div class="row">
         	<div class="col-md-6">
-        		
+        		<div id="more_img">
+        			
+        		</div>
         	</div>
         	<div class="col-md-6 p">
         		<div class="row">
@@ -304,3 +314,5 @@
 
 
 @endsection
+
+
