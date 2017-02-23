@@ -13,7 +13,7 @@ function CargarListaPersonaJuridicas(argument) {
 	$.get(route, function(res){
 		
 	$(res).each(function(key,value){
-		tablaDatos.append("<tr><td>DNI</td><td>"+value.dni+"</td><td>"+value.razon_social+"</td><td>"+value.ruc+"</td><td>"+value.direccion+"</td><td>"+value.email+"</td><td>"+value.tipo+"</td> <td style='width: 150px'><button class='btn btn-danger btn-xs' onclick='agregarPersona("+value.id+")'>Editar</button><button class='btn btn-danger btn-xs' onclick='agregarPersona("+value.id+")'>Eliminar</button></td></tr>");
+		tablaDatos.append("<tr><td>"+value.dni+"</td><td>"+value.apellido_paterno+" "+value.apellido_materno+", "+value.nombre+"</td><td>"+value.razon_social+"</td><td>"+value.ruc+"</td><td>"+value.direccion+"</td><td>"+value.email+"</td><td>"+value.tipo+"</td> <td style='width: 150px'><button class='btn btn-danger btn-xs' onclick='AbrirModalEditarPersonaJuridica("+value.PersonaJuridica_id+")'>Editar</button><button class='btn btn-danger btn-xs' onclick='eliminarPersonaJuridica("+value.PersonaJuridica_id+")'>Eliminar</button></td></tr>");
 		});
 });
 }
@@ -38,21 +38,20 @@ function CargarListaPersona() {
 
 
 
-function eliminarPersona(btn){
-	var route = "/persona/"+btn;
+function eliminarPersonaJuridica(btn){
+	var route = "/persona-juridica/"+btn;
 	 $.ajax({
 	 	url: route,
 	 	headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
 	 	type: 'DELETE',
 		dataType: 'json',
 	 	success: function(){
-			CargarListaPersona();
+			CargarListaPersonaJuridicas();
 			alertify.success("Se elimino correctamente");
 	 	},
 	 	error:function(msj){
 		 	alertify.error('fallo la consulta ajax');
 		 //	$("#msj").html(msj.responseJSON.genre);
-		
 		 }
 	 });
 }
@@ -61,7 +60,7 @@ function eliminarPersona(btn){
 
 $("#GuardarPesonaJuridica").click(function(){
 
-	var dato = $( "#FromPersonaJuridicas" ).serialize();
+	var dato = $( "#FromNewPersonaJuridicas" ).serialize();
 	var route = "/persona-juridica";
 	//var token = $("#token").val();
 
@@ -72,9 +71,9 @@ $("#GuardarPesonaJuridica").click(function(){
 		dataType: 'json',
 		data:dato,
 		success:function(msj){
-		 	//CargarListaPersona();
-		 	$('#FromPersonaJuridicas')[0].reset();
-		 	//$('#myModalGuardar').modal('hide');
+		 	CargarListaPersonaJuridicas();
+		 	$('#FromNewPersonaJuridicas')[0].reset();
+		 	$('#myModalGuardarPesonaJuridica').modal('hide');
 		 	alertify.success("Se guardo correctamente");
 		 },
 		error:function(msj){
@@ -98,48 +97,64 @@ function AbrirModalPersonaJuridica() {
 // }
 
 
-function AbrirModalEditarPersona(id) {
-	$('#myModalEditarPersona').modal('show');
+function AbrirModalEditarPersonaJuridica(id) {
 
-	var route = "persona/"+id+"/edit";
-	$.get(route, function(res){
-		$(res).each(function(key,value){
-                        $('#id').val(value.id);
-			$('#dni').val(value.dni);
-			$('#nombre').val(value.nombre);
-			$('#apellido_paterno').val(value.apellido_paterno);
-                        $('#apellido_materno').val(value.apellido_materno);
-			 
+	$('#myModalEditarPesonaJuridica').modal('show');
+
+ 	var route = "persona-juridica/"+id+"/edit";
+ 	
+ 	//alertify.error(route);
+ 	$.get(route, function(res){
+ 		$(res).each(function(key,value){
+            $('#id').val(value.PersonaJuridica_id);
+          
+ 			$('#personas_id1').val(value.persona_id);
+ 			$('#personas_nombre1').val(value.apellido_paterno+" "+value.apellido_materno+", "+value.nombre);
+			$('#ruc').val(value.ruc);
+    	    $('#razon_social').val(value.razon_social);
+			$('#direccion').val(value.direccion);
+			$('#email').val(value.email);
+
+			//alert(value.tipo);
+			if (value.tipo=='cliente') {
+				$("#tipo").val(1);
+			}
+			if (value.tipo=='proveedor') {
+				$("#tipo").val(2);
+			}	
+			//alert($("#tipo").val());
+		});
 	});
-
-});
-
 }
 
 
-$("#GuardarEditPersona").click(function(){
 
-	var dato = $( "#FormPersonaEditar" ).serialize();
-	var route = "/persona/"+$('#id').val();;
+
+$("#GuardarEditPesonaJuridica").click(function(){
+
+	//alertify.error($('#id').val());
+
+	var dato = $( "#FromEditPersonaJuridicas" ).serialize();
+	var route = "/persona-juridica/"+$('#id').val();
 
 	$.ajax({
 		url: route,
 		headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-		type: 'POST',
+		type: 'PUT',
 		dataType: 'json',
 		data:dato,
 
 		 success:function(){
 		 	
-		 	CargarListaPersona();
-		 		$('#FormPersonaEditar')[0].reset();
-		 		$('#myModalEditar').modal('hide')
+		 	CargarListaPersonaJuridicas();
+		 		$('#FromEditPersonaJuridicas')[0].reset();
+		 		//$('#myModalEditar').modal('hide')
 		 		alertify.success("Se editó la categoria");
 
 		 	//$("#msj-success").fadeIn();
 		 },
 		 error:function(msj){
-		 	alertify.error('fallo la consulta ajax');
+		 	alertify.error('fallo la consulta ajax :(');
 		 //	$("#msj").html(msj.responseJSON.genre);
 		
 		 }
@@ -149,6 +164,10 @@ $("#GuardarEditPersona").click(function(){
 
 
 function agregarPersona(id,nombre) {
-	$("#personas_id").val(id);
-	$("#personas_nombre").val(nombre);
+	$("#personas_id1").val(id);
+	$("#personas_id2").val(id);
+	$("#personas_nombre1").val(nombre);
+	$("#personas_nombre2").val(nombre);
+
+	$('#ModalListaPersonas').modal('hide');
 }

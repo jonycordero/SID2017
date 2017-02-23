@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\PersonaJuridica;
+
 class PersonaJuridicaController extends Controller
 {
     /**
@@ -23,7 +24,7 @@ class PersonaJuridicaController extends Controller
      */
     public function create()
     {
-        $personajuridica = PersonaJuridica::All();
+        $personajuridica = PersonaJuridica::query_PersonaJuridica();
         return Response()->json($personajuridica->toArray());
     }
 
@@ -49,7 +50,7 @@ class PersonaJuridicaController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -60,7 +61,8 @@ class PersonaJuridicaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $personaEditjuridica = PersonaJuridica::query_Edit_PersonaJuridica($id);
+        return Response()->json($personaEditjuridica->toArray());
     }
 
     /**
@@ -72,7 +74,12 @@ class PersonaJuridicaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $personajuridica = PersonaJuridica::find($id);
+        $personajuridica->fill($request->all());
+        $personajuridica->save();
+        return Response()->json([
+            'mensaje'=>'Actualizado'
+            ]);
     }
 
     /**
@@ -83,6 +90,10 @@ class PersonaJuridicaController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        PersonaJuridica::destroy($id);
+        return Response()->json([
+            'mensaje'=>'Eliminado'
+            ]);   
     }
 }
